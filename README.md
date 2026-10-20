@@ -21,9 +21,9 @@
 ## Built with AI
 
 > [!IMPORTANT]
-> **Track Stack was built with the help of AI.** The developer is a first-year B.Tech CSE student with a strong foundation in HTML and CSS. The application code, database schema, security rules, and documentation were generated using **Google Antigravity** and advanced AI models under the developer's continuous direction and oversight.
+> **Track Stack was built with the help of AI by team Version Controllers.** The team consists of first-year B.Tech CSE students **Ayush Chauhan** (Team Leader) and **Rishav Ranjan** with a foundation in software and web engineering. The application code, database schema, security rules, and documentation were generated using **Google Antigravity** and advanced AI models under the team's continuous direction and oversight.
 > 
-> The developer defined the product requirements from the official Mirai School of Technology (MSOT) brief, selected the feature roadmap, curated the club logos and branding assets, reviewed the generated output line-by-line, executed end-to-end testing, and iterated with the AI pairing assistant. This project represents both a functional production system and an intensive learning journey, where the developer is actively dissecting and mastering how each architecture layer operates under the hood.
+> The team defined the product requirements from the official Mirai School of Technology (MSOT) brief, selected the feature roadmap, curated the club logos and branding assets, reviewed the generated output line-by-line, executed end-to-end testing, and iterated with the AI pairing assistant. This project represents both a functional production system and an intensive learning journey, where the developers are actively dissecting and mastering how each architecture layer operates under the hood.
 
 ### What This Project Demonstrates
 - **Directing AI Engineering Tools**: Translating high-level educational institution specifications into precise system designs, schema constraints, and secure workflows.
@@ -94,17 +94,17 @@ Club data in modern educational institutions is historically fractured across ep
 
 ## Clubs Covered
 
-Track Stack is deployed for the **Delhi-NCR Campus** of Mirai School of Technology, supporting 4 societies and 6 joinable clubs:
+Track Stack is deployed for the **Delhi-NCR Campus** of Mirai School of Technology, managing 4 core clubs and Kaizen Society's 3 specialized sub-clubs:
 
-| Logo | Club / Society | Category | Description | Accent Color |
+| Logo | Club | Category | Description | Accent Color |
 | :---: | :--- | :--- | :--- | :---: |
-| <img src="public/logos/nexcell.png" width="48" height="48" /> | **NexCell** | Entrepreneurship | Startup incubator, pitch sessions & venture building | `#3B9BE0` |
-| <img src="public/logos/malhar.png" width="48" height="48" /> | **Malhar** | Cultural Society | Music, dance, dramatics & creative university arts | `#E8A935` |
-| <img src="public/logos/khel-society.png" width="48" height="48" /> | **Khel Society** | Sports & Fitness | Athletics, inter-college tournaments & wellness | `#1E6FC0` |
-| <img src="public/logos/kaizen-society.png" width="48" height="48" /> | **Kaizen Society** | Technical Society | Parent technical umbrella society | `#4FA39A` |
-| <img src="public/logos/kaizen-dev.png" width="48" height="48" /> | **Kaizen Dev Club** | Software Engineering | Web, mobile, systems development & open source | `#4FA39A` |
-| <img src="public/logos/cp-club.png" width="48" height="48" /> | **CP Club** | Algorithms & Data Structures | Competitive coding, algorithmic problem solving | `#A3E635` |
-| <img src="public/logos/kaizen-intelligence.png" width="48" height="48" /> | **Kaizen Intelligence (KI)** | Artificial Intelligence | Machine learning, data science & neural models | `#D9A441` |
+| <img src="public/logos/nexcell.png" width="48" height="48" /> | **NexCell** | Entrepreneurship Club | Startup incubator, pitch sessions & venture building | `#3B9BE0` |
+| <img src="public/logos/malhar.png" width="48" height="48" /> | **Malhar** | Cultural Club | Music, dance, dramatics & creative university arts | `#E8A935` |
+| <img src="public/logos/khel-society.png" width="48" height="48" /> | **Khel Society** | Sports Club | Athletics, inter-college tournaments & sports wellness | `#1E6FC0` |
+| <img src="public/logos/kaizen-society.png" width="48" height="48" /> | **Kaizen Society** | Technical Club | Flagship technical club with 3 specialized sub-clubs below | `#4FA39A` |
+| <img src="public/logos/kaizen-dev.png" width="48" height="48" /> | **Kaizen Dev Club (Dev Club)** | Software Engineering | Web, mobile, systems development & open source | `#4FA39A` |
+| <img src="public/logos/cp-club.png" width="48" height="48" /> | **CP Club** | Algorithms & Problem Solving | Competitive coding, algorithmic contests & DS | `#A3E635` |
+| <img src="public/logos/kaizen-intelligence.png" width="48" height="48" /> | **Kaizen Intelligence (KI)** | Artificial Intelligence | Machine learning, computer vision & neural models | `#D9A441` |
 
 ---
 
@@ -390,10 +390,16 @@ Detailed test logs and architecture documentation:
 
 ---
 
-## License & Developer Contact
+## Team: Version Controllers
+
+This project was developed by team **Version Controllers** (Mirai School of Technology):
+- **Ayush Chauhan** (Team Leader) — [GitHub Profile](https://github.com/Ayush-git800)
+- **Rishav Ranjan** — [GitHub Profile](https://github.com/rishavgiri1106-dotcom)
+
+---
+
+## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
 
-- **Developer**: Ayush Chauhan (First-Year B.Tech CSE, Mirai School of Technology)
-- **GitHub**: [@Ayush-git800](https://github.com/Ayush-git800)
 - **Repository**: [https://github.com/Ayush-git800/Track-Stack](https://github.com/Ayush-git800/Track-Stack)

@@ -55,7 +55,7 @@ report("1. Certificate Cryptographic HMAC-SHA256 Signing & Verification", () => 
     event_id: "evt-gambade",
     type: "winner",
     issue_date: "2026-04-12",
-    signatory_name: "Dr. Vikram Malhotra",
+    signatory_name: "Ayush Chauhan",
   });
 
   const validSig = signCertificateData(canonicalData);
@@ -297,8 +297,8 @@ await reportAsync("5. Server-Side PDF Generation (Certificates, Duty Leave, Tran
     event_id: "evt-hackathon",
     event_name: "Mirai HackTech 2026",
     issue_date: "2026-04-12",
-    signatory_name: "Dr. Vikram Malhotra",
-    signatory_title: "Campus Director & Dean of Student Affairs",
+    signatory_name: "Ayush Chauhan",
+    signatory_title: "Campus Director & System Administrator",
     canonical_data: "canonical_test_data",
     signature: "hmac_test_signature",
     status: "valid",

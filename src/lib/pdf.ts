@@ -218,8 +218,8 @@ export async function generateCertificatePdf(
   });
 
   // Signatory Section (Right Side)
-  const sigName = cert.signatory_name || "Dr. Vikram Malhotra";
-  const sigTitle = cert.signatory_title || "Campus Director & Dean of Student Affairs";
+  const sigName = cert.signatory_name || "Ayush Chauhan";
+  const sigTitle = cert.signatory_title || "Institutional Director & System Administrator";
 
   page.drawLine({
     start: { x: width - 260, y: 105 },
@@ -414,7 +414,7 @@ export async function generateDutyLeavePdf(
     color: rgb(0.3, 0.35, 0.45),
   });
 
-  page.drawText(leave.approver_name || "Campus Manager / Director", {
+  page.drawText(leave.approver_name || "Sundaram Mishra (Campus Manager)", {
     x: width - 220,
     y: 105,
     size: 10,

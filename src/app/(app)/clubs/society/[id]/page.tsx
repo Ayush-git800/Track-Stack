@@ -57,17 +57,17 @@ export default function SocietyGroupPage() {
             <div>
               <div className="flex items-center gap-2 mb-1.5">
                 <Badge variant="outline" className="border-teal-500/40 text-teal-300 bg-teal-500/10">
-                  Parent Technical Society
+                  Technical Club &bull; 3 Sub-Clubs
                 </Badge>
                 <span className="text-xs text-muted-foreground font-mono">
                   KAIZEN_SOCIETY &bull; Delhi-NCR
                 </span>
               </div>
               <h1 className="text-3xl font-bold font-heading text-white">
-                Kaizen Society Group Hub
+                Kaizen Society & Sub-Clubs
               </h1>
               <p className="text-sm text-muted-foreground mt-2 max-w-2xl leading-relaxed">
-                Kaizen Society is the flagship engineering umbrella at Mirai School of Technology. Rather than joining the umbrella directly, students join its specialized technical sub-clubs: software engineering, competitive algorithms, or machine intelligence.
+                Kaizen Society is the flagship engineering club at Mirai School of Technology. Students participate in its 3 specialized sub-clubs: Dev Club (software engineering), CP Club (competitive algorithms), and KI (Kaizen Intelligence - AI).
               </p>
             </div>
           </div>

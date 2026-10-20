@@ -307,7 +307,7 @@ export default function LandingPage() {
             <span>— Mirai School of Technology (MSOT)</span>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-            <span className="text-cyan-700 dark:text-cyan-400 font-medium">Built with AI assistance. Project by Ayush Chauhan</span>
+            <span className="text-cyan-700 dark:text-cyan-400 font-medium">Built with AI assistance. Project by Version Controllers (Ayush Chauhan & Rishav Ranjan)</span>
             <span className="hidden sm:inline text-slate-300 dark:text-navy-700">&bull;</span>
             <div>Delhi-NCR Campus</div>
           </div>

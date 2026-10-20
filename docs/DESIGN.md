@@ -1,7 +1,7 @@
 # Track Stack: System Architecture & Technical Design Specification
 
 > [!NOTE]
-> **AI-Assisted Development**: Track Stack was built with the assistance of AI (Google Antigravity and Gemini models) under the developer's architectural direction, defining problem requirements from the Mirai School of Technology (MSOT) brief, establishing data models, reviewing output, and testing continuously.
+> **AI-Assisted Development**: Track Stack was built with the assistance of AI (Google Antigravity and Gemini models) by team **Version Controllers** (**Ayush Chauhan** - Team Leader, and **Rishav Ranjan**), defining problem requirements from the Mirai School of Technology (MSOT) brief, establishing data models, reviewing output, and testing continuously.
 
 ---
 

@@ -127,31 +127,31 @@ export default function ClubsPage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <h3 className="font-heading text-xl font-bold text-white">
-                      Kaizen Society Umbrella
+                      Kaizen Society & Its Sub-Clubs
                     </h3>
                     <Badge variant="outline" className="border-teal-400/40 text-teal-400">
-                      Parent Society &bull; 3 Sub-Clubs
+                      Technical Club &bull; 3 Sub-Clubs
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1.5 max-w-2xl leading-relaxed">
-                    Kaizen Society is the flagship engineering parent society uniting <strong>Kaizen Dev Club</strong>, <strong>CP Club</strong>, and <strong>Kaizen Intelligence (KI)</strong> under a single technical umbrella.
+                    Kaizen Society is the flagship engineering club featuring three specialized sub-clubs: <strong>Dev Club</strong> (Kaizen Dev Club), <strong>CP Club</strong>, and <strong>KI</strong> (Kaizen Intelligence).
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
                     <span className="rounded-md border border-teal-500/20 bg-teal-500/10 px-2 py-0.5 text-teal-300">
-                      Kaizen Dev Club
+                      Dev Club (Software)
                     </span>
                     <span className="rounded-md border border-lime-500/20 bg-lime-500/10 px-2 py-0.5 text-lime-300">
-                      CP Club
+                      CP Club (Algorithms)
                     </span>
                     <span className="rounded-md border border-yellow-500/20 bg-yellow-500/10 px-2 py-0.5 text-yellow-300">
-                      Kaizen Intelligence (KI)
+                      KI (Kaizen Intelligence - AI)
                     </span>
                   </div>
                 </div>
               </div>
               <Link href={`/clubs/society/${kaizenParent.id}`}>
                 <Button variant="outline" size="sm" className="border-teal-500/40 text-teal-300 hover:bg-teal-500/10 gap-1.5 shrink-0">
-                  <Layers className="h-4 w-4" /> View Kaizen Group Page &rarr;
+                  <Layers className="h-4 w-4" /> View Kaizen Sub-Clubs &rarr;
                 </Button>
               </Link>
             </div>

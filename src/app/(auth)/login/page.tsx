@@ -21,6 +21,9 @@ export default function LoginPage() {
   const [password, setPassword] = React.useState("••••••••");
   const [isOtpMode, setIsOtpMode] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [showGoogleModal, setShowGoogleModal] = React.useState(false);
+  const [googleAuthLoading, setGoogleAuthLoading] = React.useState<string | null>(null);
+  const [customGoogleEmail, setCustomGoogleEmail] = React.useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +47,22 @@ export default function LoginPage() {
     switchRole(targetRole);
     toast.success(`Switched role to ${targetRole.replace("_", " ").toUpperCase()}`);
     router.push("/dashboard");
+  };
+
+  const handleGoogleAccountSelect = async (accountEmail: string, accountName: string) => {
+    setGoogleAuthLoading(accountName);
+    try {
+      // Small simulated auth exchange delay for authentic Google OAuth feel
+      await new Promise((r) => setTimeout(r, 650));
+      await login(accountEmail);
+      toast.success(`Google Workspace authenticated: Welcome, ${accountName}!`);
+      setShowGoogleModal(false);
+      router.push("/dashboard");
+    } catch {
+      toast.error("Google sign in encountered an issue.");
+    } finally {
+      setGoogleAuthLoading(null);
+    }
   };
 
   return (
@@ -96,12 +115,8 @@ export default function LoginPage() {
             <Button
               type="button"
               variant="outline"
-              className="w-full h-11 border-navy-800 bg-navy-900/60 hover:bg-navy-850 gap-2"
-              onClick={() => {
-                toast.info("Google OAuth provider connected. Redirecting in production.");
-                login("student.alex@msot.edu");
-                router.push("/dashboard");
-              }}
+              className="w-full h-11 border-navy-800 bg-navy-900/60 hover:bg-navy-850 gap-2 cursor-pointer transition-all hover:border-cyan-500/40"
+              onClick={() => setShowGoogleModal(true)}
             >
               <svg className="h-4 w-4" viewBox="0 0 24 24">
                 <path
@@ -293,6 +308,108 @@ export default function LoginPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Google Workspace Account Selector Modal */}
+      {showGoogleModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+          <div className="relative w-full max-w-md rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-900 shadow-2xl p-6 overflow-hidden">
+            {googleAuthLoading && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/95 dark:bg-navy-950/95 backdrop-blur-xs p-6 text-center animate-in fade-in">
+                <div className="h-10 w-10 animate-spin rounded-full border-3 border-cyan-500 border-t-transparent mb-3" />
+                <p className="font-semibold text-sm text-slate-900 dark:text-white">Connecting to Google Workspace...</p>
+                <p className="text-xs text-slate-500 dark:text-muted-foreground mt-1">Authenticating {googleAuthLoading}</p>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-navy-800">
+              <div className="flex items-center gap-2.5">
+                <svg className="h-5 w-5" viewBox="0 0 24 24">
+                  <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z" />
+                  <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z" />
+                  <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.2c0 2.8.7 5.5 1.9 7.8l3.7-2.9z" />
+                  <path fill="#34A853" d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16.5C3.7 20.3 7.5 23.5 12 23.5z" />
+                </svg>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Sign in with Google</h3>
+                  <p className="text-[11px] text-slate-500 dark:text-muted-foreground">Mirai School of Technology (msot.edu)</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowGoogleModal(false)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg font-bold leading-none p-1"
+              >
+                &times;
+              </button>
+            </div>
+
+            <div className="mt-4">
+              <p className="text-xs text-slate-600 dark:text-slate-300 mb-3 font-medium">Choose an institutional account:</p>
+              
+              <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                {[
+                  { name: "Ayush Chauhan", email: "admin@msot.edu", role: "System Admin", badge: "Admin", color: "text-cyan-400 border-cyan-500/30" },
+                  { name: "Sundaram Mishra", email: "manager.delhi@msot.edu", role: "Campus Manager", badge: "Manager", color: "text-blue-400 border-blue-500/30" },
+                  { name: "Gaurav Kumar", email: "advisor.kaizen@msot.edu", role: "Faculty Advisor", badge: "Faculty", color: "text-purple-400 border-purple-500/30" },
+                  { name: "Rishav Raj", email: "coordinator.kaizen@msot.edu", role: "Student Coordinator", badge: "Coordinator", color: "text-emerald-400 border-emerald-500/30" },
+                  { name: "Chintu", email: "student.alex@msot.edu", role: "Student (B.Tech CSE)", badge: "Student", color: "text-amber-400 border-amber-500/30" },
+                ].map((acc) => (
+                  <button
+                    key={acc.email}
+                    type="button"
+                    onClick={() => handleGoogleAccountSelect(acc.email, acc.name)}
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl border border-slate-200 dark:border-navy-800 bg-slate-50/70 dark:bg-navy-950/70 hover:border-cyan-500/50 hover:bg-cyan-50/50 dark:hover:bg-navy-850 transition-all text-left group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="h-8 w-8 rounded-full bg-cyan-100 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-700 flex items-center justify-center font-bold text-xs text-cyan-800 dark:text-cyan-300">
+                        {acc.name[0]}
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-cyan-700 dark:group-hover:text-cyan-300 transition-colors">
+                          {acc.name}
+                        </div>
+                        <div className="text-[11px] text-slate-500 dark:text-muted-foreground font-mono">
+                          {acc.email}
+                        </div>
+                      </div>
+                    </div>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full border bg-white/50 dark:bg-navy-900/50 font-medium ${acc.color}`}>
+                      {acc.badge}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-slate-100 dark:border-navy-800">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!customGoogleEmail.trim()) return;
+                    handleGoogleAccountSelect(customGoogleEmail.trim(), customGoogleEmail.split("@")[0]);
+                  }}
+                  className="space-y-2"
+                >
+                  <label className="text-[11px] text-slate-500 dark:text-muted-foreground block">
+                    Or sign in with another @msot.edu account:
+                  </label>
+                  <div className="flex gap-2">
+                    <Input
+                      type="email"
+                      value={customGoogleEmail}
+                      onChange={(e) => setCustomGoogleEmail(e.target.value)}
+                      placeholder="your.name@msot.edu"
+                      className="h-9 text-xs"
+                    />
+                    <Button type="submit" variant="gradient" size="sm" className="h-9 px-3 text-xs shrink-0">
+                      Continue &rarr;
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Lumi Pre-Login General Help Assistant */}
       <LumiChatDrawer isPreLogin={true} />

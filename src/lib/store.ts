@@ -1504,8 +1504,8 @@ class Store {
             description: certDesc,
             event_id: eventId,
             event_name: event.name,
-            signatory_name: "Dr. Vikram Malhotra",
-            signatory_title: "Campus Director & Dean of Student Affairs",
+            signatory_name: "Ayush Chauhan",
+            signatory_title: "Campus Director & System Administrator",
           }, staffUser);
           issuedCount++;
         }
@@ -1564,8 +1564,8 @@ class Store {
     const nextIdx = this.state.certificates.length + 1;
     const certId = `MSOT-CERT-2026-${String(nextIdx).padStart(4, "0")}`;
     const issueDate = new Date().toISOString().substring(0, 10);
-    const sigName = data.signatory_name || "Dr. Vikram Malhotra";
-    const sigTitle = data.signatory_title || "Campus Director & Dean of Student Affairs";
+    const sigName = data.signatory_name || "Ayush Chauhan";
+    const sigTitle = data.signatory_title || "Campus Director & System Administrator";
 
     const canonicalObj = {
       id: certId,

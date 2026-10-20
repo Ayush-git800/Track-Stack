@@ -131,18 +131,18 @@ export default function ClubManagePage() {
       {/* Registry Table */}
       <Card className="border-navy-800 bg-navy-900/80">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-bold">Registered Clubs & Societies</CardTitle>
+          <CardTitle className="text-base font-bold">Registered Clubs</CardTitle>
           <CardDescription className="text-xs">
-            Review status, capacities, meeting venue, and parent society hierarchies
+            Review status, capacities, meeting venue, and sub-club relationships
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Club / Society</TableHead>
+                <TableHead>Club</TableHead>
                 <TableHead>Category</TableHead>
-                <TableHead>Parent Society</TableHead>
+                <TableHead>Parent Club</TableHead>
                 <TableHead>Meeting Day & Venue</TableHead>
                 <TableHead>Capacity</TableHead>
                 <TableHead>Status</TableHead>
@@ -260,7 +260,7 @@ export default function ClubManagePage() {
               {editingClub.id ? "Edit Club Details" : "Register New Club"}
             </h3>
             <p className="text-xs text-muted-foreground mb-6">
-              Configure parameters, meeting venue, capacity constraints, and parent society
+              Configure parameters, meeting venue, capacity constraints, and parent club
             </p>
 
             <form onSubmit={handleSave} className="space-y-4">

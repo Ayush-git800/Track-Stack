@@ -36,7 +36,7 @@ export default function EventResultsPage() {
   const [firstPlaceUserId, setFirstPlaceUserId] = React.useState("");
   const [secondPlaceUserId, setSecondPlaceUserId] = React.useState("");
   const [thirdPlaceUserId, setThirdPlaceUserId] = React.useState("");
-  const [signatoryName, setSignatoryName] = React.useState("Dr. Vikram Malhotra");
+  const [signatoryName, setSignatoryName] = React.useState("Ayush Chauhan");
   const [signatoryTitle, setSignatoryTitle] = React.useState("Campus Director & Dean of Student Affairs");
   const [autoIssueParticipation, setAutoIssueParticipation] = React.useState(true);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
