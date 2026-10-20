@@ -19,7 +19,8 @@
     "lumi:eval": "node scripts/eval-lumi.mjs",
     "process-logos": "node scripts/process-logos.mjs",
     "seed": "node scripts/seed.mjs",
-    "setup": "node scripts/setup.mjs"
+    "setup": "node scripts/setup.mjs",
+    "docs:pdf": "node scripts/generate-doc-pdfs.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.30.0",
