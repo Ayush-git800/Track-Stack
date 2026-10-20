@@ -8,7 +8,7 @@ console.log("===============================================================");
 console.log("🤖 STARTING LUMI AI ASSISTANT EVALUATION (30 CASES)");
 console.log("===============================================================\n");
 
-const evalPath = path.resolve(process.cwd(), "lumi/eval.json");
+const evalPath = path.resolve(process.cwd(), "scripts/eval.json");
 const evalCases = JSON.parse(fs.readFileSync(evalPath, "utf-8"));
 
 const provider = getLumiProvider();

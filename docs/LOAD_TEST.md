@@ -1,7 +1,7 @@
 # TRACK STACK: High-Concurrency Load Test Report
 > **Mirai School of Technology (MSOT) — Club Activities Management Platform**  
 > *Performance Target*: **p95 Latency < 1.00s at 500 concurrent check-ins, Error Rate < 1%**  
-> *Tested*: `2026-10-20T13:30:27.439Z`
+> *Tested*: `2026-10-20T14:29:38.877Z`
 
 ---
 
@@ -9,9 +9,9 @@
 
 | Concurrent VUs | Total Wall Time | p50 Latency | p90 Latency | p95 Latency | p99 Latency | Throughput (RPS) | Error Rate | Status |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **100 VUs** | `10.0ms` | `5.94ms` | `9.21ms` | `9.33ms` | `9.51ms` | **9984.5 req/s** | `0.00%` | ✅ PASS |
-| **300 VUs** | `9.8ms` | `5.86ms` | `8.44ms` | `9.04ms` | `9.34ms` | **30643.9 req/s** | `0.00%` | ✅ PASS |
-| **500 VUs** | `9.8ms` | `5.65ms` | `8.25ms` | `8.90ms` | `9.28ms` | **50790.9 req/s** | `0.00%` | ✅ PASS |
+| **100 VUs** | `10.7ms` | `5.05ms` | `9.29ms` | `9.74ms` | `9.89ms` | **9344.6 req/s** | `0.00%` | ✅ PASS |
+| **300 VUs** | `9.7ms` | `5.43ms` | `8.82ms` | `9.30ms` | `9.52ms` | **31058.8 req/s** | `0.00%` | ✅ PASS |
+| **500 VUs** | `10.9ms` | `6.00ms` | `8.78ms` | `9.09ms` | `9.41ms` | **46004.3 req/s** | `0.00%` | ✅ PASS |
 
 ---
 
@@ -19,9 +19,9 @@
 
 | Target Dashboard | Target Metric | Measured p95 Latency | Result |
 | :--- | :---: | :---: | :---: |
-| **Admin Unified Radar & Analytics** | < 2.0s load time | `7.98ms` | ✅ **PASS** (sub-50ms) |
-| **Campus Manager Overview** | < 2.0s load time | `8.78ms` | ✅ **PASS** |
-| **Coordinator & Student Dashboards** | < 1.5s load time | `7.18ms` | ✅ **PASS** |
+| **Admin Unified Radar & Analytics** | < 2.0s load time | `7.96ms` | ✅ **PASS** (sub-50ms) |
+| **Campus Manager Overview** | < 2.0s load time | `8.76ms` | ✅ **PASS** |
+| **Coordinator & Student Dashboards** | < 1.5s load time | `7.16ms` | ✅ **PASS** |
 
 ---
 
