@@ -2,6 +2,7 @@
   "name": "track-stack",
   "version": "1.0.0",
   "description": "Track Stack - Club Activities Management Platform for MSOT",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
@@ -13,9 +14,12 @@
     "test:phase3": "node scripts/verify-phase3.mjs",
     "test:phase4": "node scripts/verify-phase4.mjs",
     "test:phase5": "node scripts/verify-phase5.mjs",
+    "test:report": "node scripts/test-report-runner.mjs",
+    "test:load": "node scripts/run-load-test.mjs",
     "lumi:eval": "node scripts/eval-lumi.mjs",
     "process-logos": "node scripts/process-logos.mjs",
-    "seed": "node scripts/seed.mjs"
+    "seed": "node scripts/seed.mjs",
+    "setup": "node scripts/setup.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.30.0",

@@ -45,6 +45,11 @@ export default function RootLayout({
                   document.documentElement.classList.add("dark");
                   document.documentElement.classList.remove("light");
                 }
+                if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+                  window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js').catch(() => {});
+                  });
+                }
               } catch (e) {}
             `,
           }}

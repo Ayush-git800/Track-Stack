@@ -196,18 +196,49 @@ flowchart TD
 - **Supabase Project** (hosted or local CLI)
 - *(Optional)* **Google Gemini API Key** for Lumi AI assistant live generation
 
-### Installation
+### One-Command Setup (Recommended)
+
+Run the automated one-command setup script to verify environment variables, process official club and Lumi logos, seed the Delhi-NCR campus, and run integrity checks:
 
 ```bash
-# 1. Clone the repository
+# 1. Clone repository
 git clone https://github.com/Ayush-git800/Track-Stack.git
 cd Track-Stack
 
-# 2. Install dependencies
+# 2. Automated one-command setup
+npm run setup
+
+# 3. Start local development server
+npm run dev
+```
+
+### Docker Compose Setup
+
+Run Track Stack in containerized mode with Docker:
+
+```bash
+# Build and run containers in background
+docker compose up -d
+
+# View logs
+docker compose logs -f
+```
+
+### Manual Installation & Setup
+
+```bash
+# 1. Install dependencies
 npm install
 
-# 3. Configure environment variables
+# 2. Configure environment variables
 cp .env.example .env.local
+
+# 3. Process logos and seed data
+npm run process-logos
+npm run seed
+
+# 4. Start development server
+npm run dev
 ```
 
 ### Environment Variables
@@ -295,24 +326,32 @@ Track-Stack/
 
 ## Testing & Quality Assurance
 
-Track Stack features comprehensive automated test suites across every phase:
+Track Stack features comprehensive automated test suites across every functional domain:
 
 ```bash
-# Run all automated verification tests (Phases 1-5)
-npm test
+# Run comprehensive automated test report suite (51/51 tests across all phases)
+npm run test:report
+
+# Run high-concurrency load testing benchmark (100, 300, 500 VUs)
+npm run test:load
 
 # Run individual test suites
+npm test              # Core Phase 1-5 suites
 npm run test:verify   # Phase 1 & 2: Database schemas, RLS rules, 2-club limit
 npm run test:phase3   # Phase 3: Rotating QR, anti-proxy, geofencing, rubrics
 npm run test:phase4   # Phase 4: HMAC certificates, concurrent teams, duty leave
 npm run test:phase5   # Phase 5: Report integrity, CSV/PDF exports, cron jobs
-
-# Run Lumi AI Assistant 30-case evaluation suite
-npm run lumi:eval
+npm run lumi:eval     # 30-case Lumi AI Assistant evaluation suite
 
 # Production type check and Next.js build
 npm run build
 ```
+
+Detailed test logs and architecture documentation:
+- **Comprehensive Automated Test Report**: [docs/TEST_REPORT.md](docs/TEST_REPORT.md)
+- **High-Concurrency Load Testing**: [docs/LOAD_TEST.md](docs/LOAD_TEST.md)
+- **5-Minute Evaluation Demo Script**: [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
+- **System Architecture & Technical Design**: [docs/DESIGN.md](docs/DESIGN.md)
 
 ---
 

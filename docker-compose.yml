@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: track-stack-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://placeholder-project.supabase.co}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-placeholder-anon-key}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@msot.edu}
+      - NEXT_PUBLIC_DEMO_MODE=true
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - HMAC_SECRET=${HMAC_SECRET:-super-secret-trackstack-hmac-key-2026}
+      - CRON_SECRET=${CRON_SECRET:-mirai-trackstack-cron-secret-2026}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - LUMI_MODEL=${LUMI_MODEL:-gemini-2.5-flash}
+    restart: unless-stopped
