@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #0F172A;
+
+    --card: #FFFFFF;
+    --card-foreground: #0F172A;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #0F172A;
+
+    --primary: #0284C7;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #F1F5F9;
+    --secondary-foreground: #0F172A;
+
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+
+    --accent: #F1F5F9;
+    --accent-foreground: #0F172A;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #0284C7;
+
+    --radius: 1rem;
+
+    /* Adaptive Navy tokens for Light Mode (Crisp Slate/White Theme) */
+    --navy-950: 248 250 252;  /* #F8FAFC - crisp light background */
+    --navy-900: 255 255 255;  /* #FFFFFF - clean pure white card surface */
+    --navy-850: 241 245 249;  /* #F1F5F9 - elevated pills / subtle surfaces */
+    --navy-800: 226 232 240;  /* #E2E8F0 - crisp subtle border */
+    --navy-700: 203 213 225;  /* #CBD5E1 - interactive hover border */
+  }
+
+  /* Dark mode default */
+  .dark {
+    --background: #060B18;
+    --foreground: #E6EBFF;
+
+    --card: #0D1428;
+    --card-foreground: #E6EBFF;
+
+    --popover: #141C36;
+    --popover-foreground: #E6EBFF;
+
+    --primary: #22D3EE;
+    --primary-foreground: #060B18;
+
+    --secondary: #141C36;
+    --secondary-foreground: #E6EBFF;
+
+    --muted: #1F2A4D;
+    --muted-foreground: #94A3C8;
+
+    --accent: #141C36;
+    --accent-foreground: #E6EBFF;
+
+    --destructive: #F87171;
+    --destructive-foreground: #060B18;
+
+    --border: #1F2A4D;
+    --input: #1F2A4D;
+    --ring: #22D3EE;
+
+    /* Cyber Navy tokens for Dark Mode (Deep Navy / Glowing Theme) */
+    --navy-950: 6 11 24;      /* #060B18 - deep dark background */
+    --navy-900: 13 20 40;     /* #0D1428 - cyber card surface */
+    --navy-850: 20 28 54;     /* #141C36 - elevated dark container */
+    --navy-800: 31 42 77;     /* #1F2A4D - dark border */
+    --navy-700: 43 58 104;    /* #2B3A68 - hover border */
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Numbers tabular formatting */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Glassmorphism & Custom Elements */
+.glass-card {
+  background: #FFFFFF;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  color: #0F172A;
+}
+
+.dark .glass-card {
+  background: rgba(13, 20, 40, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(31, 42, 77, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color: #E6EBFF;
+}
+
+.gradient-border-top {
+  position: relative;
+}
+.gradient-border-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0284C7 0%, #2563EB 50%, #7C3AED 100%);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+.dark .gradient-border-top::before {
+  background: linear-gradient(90deg, #22D3EE 0%, #3B82F6 50%, #8B5CF6 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #0284C7 0%, #2563EB 50%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dark .gradient-text {
+  background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================================
+   LIGHT MODE OPTIMIZATIONS
+   Ensures rich contrast, solid cards, and visible features
+   ======================================================== */
+html:not(.dark) {
+  color-scheme: light;
+}
+
+/* Headings and bold titles in light mode */
+html:not(.dark) .text-white {
+  color: #0F172A;
+}
+
+/* Solid buttons that MUST keep white text */
+html:not(.dark) .keep-white,
+html:not(.dark) button.bg-blue-600,
+html:not(.dark) .bg-blue-600,
+html:not(.dark) [data-variant="default"],
+html:not(.dark) [data-variant="gradient"] {
+  color: #FFFFFF !important;
+}
+
+/* High contrast accent text in light mode */
+html:not(.dark) .text-cyan-400 {
+  color: #0284C7;
+}
+html:not(.dark) .text-cyan-300 {
+  color: #0369A1;
+}
+html:not(.dark) .text-blue-400 {
+  color: #2563EB;
+}
+html:not(.dark) .text-emerald-400 {
+  color: #059669;
+}
+html:not(.dark) .text-amber-400 {
+  color: #D97706;
+}
+html:not(.dark) .text-violet-400 {
+  color: #7C3AED;
+}
+html:not(.dark) .text-red-400 {
+  color: #DC2626;
+}
+html:not(.dark) .text-teal-400 {
+  color: #0D9488;
+}
+html:not(.dark) .text-sky-400 {
+  color: #0284C7;
+}
+html:not(.dark) .text-lime-400 {
+  color: #4D7C0F;
+}
+html:not(.dark) .text-yellow-400 {
+  color: #B45309;
+}
+
+/* Hover contrast */
+html:not(.dark) .hover\:text-white:hover {
+  color: #0F172A;
+}
+
+/* Clean solid card surfaces in light mode without translucent washout */
+html:not(.dark) .bg-navy-900\/80,
+html:not(.dark) .bg-navy-900\/60,
+html:not(.dark) .bg-navy-900\/90,
+html:not(.dark) .bg-navy-900\/95,
+html:not(.dark) .bg-navy-900 {
+  background-color: #FFFFFF;
+}
+
+/* Clean nested cards / pills in light mode */
+html:not(.dark) .bg-navy-950\/60,
+html:not(.dark) .bg-navy-950\/80,
+html:not(.dark) .bg-navy-950\/40 {
+  background-color: #F8FAFC;
+  border-color: #E2E8F0;
+}
+
+/* Clean page containers in light mode */
+html:not(.dark) .bg-navy-950 {
+  background-color: #F8FAFC;
+}
+
+/* Clean modal overlays in light mode */
+html:not(.dark) .fixed.bg-navy-950\/80,
+html:not(.dark) .fixed.bg-navy-950\/95 {
+  background-color: rgba(15, 23, 42, 0.45);
+}
+
+/* Soft card shadows in light mode */
+html:not(.dark) .shadow-glass {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Glowing shadows in light mode become subtle elevation */
+html:not(.dark) .shadow-glow {
+  box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.25);
+}
+
+/* Custom sleek scrollbar for sidebar and compact panels */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.5);
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.8);
+}
