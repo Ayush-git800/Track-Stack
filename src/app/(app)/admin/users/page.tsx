@@ -47,7 +47,7 @@ export default function AdminUsersPage() {
     );
   }
 
-  // Combine seeded demo users and 60 students
+  // Combine seeded demo users and students
   const demoStaff: UserProfile[] = [
     {
       id: "u0000000-0000-0000-0000-000000000001",
@@ -57,7 +57,6 @@ export default function AdminUsersPage() {
       campus_id: "c1111111-1111-1111-1111-111111111111",
       campus_name: "Delhi-NCR Campus",
       program: "Office of the Dean",
-      year_of_study: 4,
       student_id: "STAFF-ADM-01",
     },
     {
@@ -68,7 +67,6 @@ export default function AdminUsersPage() {
       campus_id: "c1111111-1111-1111-1111-111111111111",
       campus_name: "Delhi-NCR Campus",
       program: "Delhi Campus Operations",
-      year_of_study: 4,
       student_id: "STAFF-DEL-02",
     },
     {
@@ -81,7 +79,6 @@ export default function AdminUsersPage() {
       club_id: "a1000000-0000-0000-0000-000000000002",
       club_name: "Kaizen Dev Club",
       program: "Department of Computer Science",
-      year_of_study: 4,
       student_id: "FAC-CS-03",
     },
     {
@@ -94,8 +91,8 @@ export default function AdminUsersPage() {
       club_id: "a1000000-0000-0000-0000-000000000002",
       club_name: "Kaizen Dev Club",
       program: "B.Tech Computer Science & AI",
-      year_of_study: 3,
-      student_id: "MSOT2024CS042",
+      year_of_study: 2,
+      student_id: "MSOT2025CS042",
     },
   ];
 

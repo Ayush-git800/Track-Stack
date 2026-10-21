@@ -26,7 +26,6 @@ const DEMO_USERS: Record<UserRole, UserProfile> = {
     campus_id: "c1111111-1111-1111-1111-111111111111",
     campus_name: "Delhi-NCR Campus",
     program: "Office of the Dean",
-    year_of_study: 4,
     student_id: "STAFF-ADM-01",
   },
   campus_manager: {
@@ -37,7 +36,6 @@ const DEMO_USERS: Record<UserRole, UserProfile> = {
     campus_id: "c1111111-1111-1111-1111-111111111111",
     campus_name: "Delhi-NCR Campus",
     program: "Delhi Campus Operations",
-    year_of_study: 4,
     student_id: "STAFF-DEL-02",
   },
   faculty_advisor: {
@@ -50,7 +48,6 @@ const DEMO_USERS: Record<UserRole, UserProfile> = {
     club_id: "a1000000-0000-0000-0000-000000000002",
     club_name: "Kaizen Dev Club",
     program: "Department of Computer Science",
-    year_of_study: 4,
     student_id: "FAC-CS-03",
   },
   student_coordinator: {
@@ -63,8 +60,8 @@ const DEMO_USERS: Record<UserRole, UserProfile> = {
     club_id: "a1000000-0000-0000-0000-000000000002",
     club_name: "Kaizen Dev Club",
     program: "B.Tech Computer Science & AI",
-    year_of_study: 3,
-    student_id: "MSOT2024CS042",
+    year_of_study: 2,
+    student_id: "MSOT2025CS042",
   },
   student: {
     id: "u0000000-0000-0000-0000-000000000005",
@@ -106,10 +103,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("trackstack_current_user", JSON.stringify(targetUser));
   };
 
-  const login = async (email: string): Promise<boolean> => {
-    // Match against demo users or students
+  const login = async (emailOrId: string): Promise<boolean> => {
+    const term = emailOrId.trim().toLowerCase();
+    // 1. Match against demo users
     const matched = Object.values(DEMO_USERS).find(
-      (u) => u.email.toLowerCase() === email.toLowerCase()
+      (u) =>
+        u.email.toLowerCase() === term ||
+        (u.student_id && u.student_id.toLowerCase() === term)
     );
     if (matched) {
       setUser(matched);
@@ -117,14 +117,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return true;
     }
 
-    // New or standard student login
+    // 2. Match against seeded student batch
+    const matchedStudent = (seedData.students as any[])?.find(
+      (s) =>
+        s.email?.toLowerCase() === term ||
+        s.student_id?.toLowerCase() === term ||
+        s.full_name?.toLowerCase() === term
+    );
+    if (matchedStudent) {
+      const studentProfile: UserProfile = {
+        ...matchedStudent,
+        role: "student",
+      };
+      setUser(studentProfile);
+      localStorage.setItem("trackstack_current_user", JSON.stringify(studentProfile));
+      return true;
+    }
+
+    // 3. New or custom student login
     const studentUser: UserProfile = {
       id: `u-${Date.now()}`,
-      email,
-      full_name: email.split("@")[0].replace(".", " ").toUpperCase(),
-      role: email.includes("admin") ? "admin" : "student",
+      email: emailOrId.includes("@") ? emailOrId : `${emailOrId}@msot.edu`,
+      full_name: emailOrId.split("@")[0].replace(".", " ").toUpperCase(),
+      role: emailOrId.includes("admin") ? "admin" : "student",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       campus_name: "Delhi-NCR Campus",
+      student_id: !emailOrId.includes("@") ? emailOrId : `MSOT2026${Math.floor(100 + Math.random() * 900)}`,
       year_of_study: 1,
       program: "B.Tech Computer Science",
     };

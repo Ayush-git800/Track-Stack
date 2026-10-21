@@ -41,8 +41,6 @@ export const SEED_DATA = {
         year_overrides: {
           "1": 2,
           "2": 2,
-          "3": 2,
-          "4": 1,
         },
       },
       description: "Club enrolment rules and per-year capacity constraints",
@@ -117,7 +115,7 @@ export const SEED_DATA = {
       parent_club_id: "a1000000-0000-0000-0000-000000000001",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Technical",
-      capacity: 60,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "10:00 AM - 1:00 PM",
@@ -134,7 +132,7 @@ export const SEED_DATA = {
       parent_club_id: "a1000000-0000-0000-0000-000000000001",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Technical",
-      capacity: 50,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "10:00 AM - 1:00 PM",
@@ -151,7 +149,7 @@ export const SEED_DATA = {
       parent_club_id: "a1000000-0000-0000-0000-000000000001",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Technical",
-      capacity: 45,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "10:00 AM - 1:00 PM",
@@ -168,7 +166,7 @@ export const SEED_DATA = {
       parent_club_id: null,
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Entrepreneurship",
-      capacity: 70,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "10:00 AM - 1:00 PM",
@@ -185,7 +183,7 @@ export const SEED_DATA = {
       parent_club_id: null,
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Cultural",
-      capacity: 80,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "10:00 AM - 1:00 PM",
@@ -202,7 +200,7 @@ export const SEED_DATA = {
       parent_club_id: null,
       campus_id: "c1111111-1111-1111-1111-111111111111",
       category: "Sports",
-      capacity: 90,
+      capacity: 150,
       status: "approved",
       meeting_day: "Saturday",
       meeting_time: "7:00 AM - 10:00 AM",
@@ -221,7 +219,6 @@ export const SEED_DATA = {
       role: "admin",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       program: "Office of the Dean",
-      year_of_study: 4,
       student_id: "STAFF-ADM-01",
     },
     {
@@ -231,7 +228,6 @@ export const SEED_DATA = {
       role: "campus_manager",
       campus_id: "c1111111-1111-1111-1111-111111111111",
       program: "Delhi Campus Operations",
-      year_of_study: 4,
       student_id: "STAFF-DEL-02",
     },
     {
@@ -242,7 +238,6 @@ export const SEED_DATA = {
       campus_id: "c1111111-1111-1111-1111-111111111111",
       club_id: "a1000000-0000-0000-0000-000000000002", // Kaizen Dev
       program: "Department of Computer Science",
-      year_of_study: 4,
       student_id: "FAC-CS-03",
     },
     {
@@ -253,8 +248,8 @@ export const SEED_DATA = {
       campus_id: "c1111111-1111-1111-1111-111111111111",
       club_id: "a1000000-0000-0000-0000-000000000002", // Kaizen Dev
       program: "B.Tech Computer Science & AI",
-      year_of_study: 3,
-      student_id: "MSOT2024CS042",
+      year_of_study: 2,
+      student_id: "MSOT2025CS042",
     },
     {
       id: "u0000000-0000-0000-0000-000000000005",
@@ -384,46 +379,209 @@ export const SEED_DATA = {
   ],
 };
 
-// Generate 60 diverse students
+// Official 1st Year Batch Roster (119 Students)
+export const FIRST_YEAR_ROSTER = [
+  { name: "Avi Rishu Sarathe", roll: "260439" },
+  { name: "Kayenat Praveen", roll: "260446" },
+  { name: "Aryan", roll: "260419" },
+  { name: "Chanakya Mishra", roll: "260417" },
+  { name: "Saksham Chauhan", roll: "260443" },
+  { name: "Shobhit Soam", roll: "260433" },
+  { name: "Rishav Ranjan", roll: "260441" },
+  { name: "Bhavyam", roll: "260420" },
+  { name: "Chirushi Gupta", roll: "260408" },
+  { name: "Piyush Kumar", roll: "260410" },
+  { name: "Adarsh Kumar", roll: "260939" },
+  { name: "Abdullah Numair Ahmed", roll: "260428" },
+  { name: "Adarsh Kumar", roll: "260449" },
+  { name: "Aditi Singh", roll: "260442" },
+  { name: "Akhil Mishra", roll: "260450" },
+  { name: "Saksham Gusain", roll: "260445" },
+  { name: "Shaurya Pundir", roll: "260418" },
+  { name: "Akshat Jain", roll: "260130" },
+  { name: "Shiv Choudhary", roll: "260406" },
+  { name: "Archit Sharma", roll: "260437" },
+  { name: "Utkarsh Raj", roll: "260455" },
+  { name: "Harsh Singh", roll: "260430" },
+  { name: "Shivangi Sharma", roll: "260523" },
+  { name: "Akash Payra", roll: "260426" },
+  { name: "Tausif Raza", roll: "260444" },
+  { name: "Shaurya Taliyan", roll: "260416" },
+  { name: "Priya Patel", roll: "260427" },
+  { name: "Luv", roll: "260413" },
+  { name: "Raj Kamal", roll: "260438" },
+  { name: "Utkarshini Chaurasia", roll: "260414" },
+  { name: "Dhruv Kashyap", roll: "260405" },
+  { name: "Riddhi", roll: "260432" },
+  { name: "Hardik Kumar", roll: "260434" },
+  { name: "Prince Nautiyal", roll: "260436" },
+  { name: "Harsh Keshri", roll: "260435" },
+  { name: "Ranjan Kumar", roll: "260407" },
+  { name: "Shruti Sharma", roll: "260423" },
+  { name: "Aryan Jaggi", roll: "260422" },
+  { name: "Parth Singhal", roll: "260415" },
+  { name: "Omkar Yadav", roll: "260737" },
+  { name: "Ayush Kumar Singh", roll: "260409" },
+  { name: "Shreyashi Agrawal", roll: "260532" },
+  { name: "Dwij Gondaliya", roll: "260421" },
+  { name: "Ritika", roll: "260412" },
+  { name: "Siddhi", roll: "260431" },
+  { name: "Shwetank", roll: "260424" },
+  { name: "Surodip De", roll: "260459" },
+  { name: "Saksham Soni", roll: "260574" },
+  { name: "Shivansh Singh Pokhariya", roll: "260451" },
+  { name: "Saket Anand", roll: "260448" },
+  { name: "Dev Singhal", roll: "260456" },
+  { name: "Ayush Chauhan", roll: "260429" },
+  { name: "Ayush Kumar", roll: "260440" },
+  { name: "Simran Kumari", roll: "260575" },
+  { name: "Abhijeet Singh", roll: "260531" },
+  { name: "Lara Kumar", roll: "260452" },
+  { name: "Sujit Kumar", roll: "260447" },
+  { name: "Shambhavi Sharma", roll: "260581" },
+  { name: "Kunal Mishra", roll: "260528" },
+  { name: "Mayank Raj", roll: "260453" },
+  { name: "Kunal Gaur", roll: "260565" },
+  { name: "Vaanij Jaluthriya", roll: "260579" },
+  { name: "Tejaswi Gupta", roll: "260741" },
+  { name: "Yash Rana", roll: "260525" },
+  { name: "Kaushik Kumar", roll: "260524" },
+  { name: "Kumar Gaurav", roll: "260734" },
+  { name: "Shreyash Tripathi", roll: "260529" },
+  { name: "Gauri Singh", roll: "260462" },
+  { name: "Nupur Saha", roll: "260521" },
+  { name: "Shaurya Pandey", roll: "260740" },
+  { name: "Hari Krishna Shukla", roll: "260586" },
+  { name: "Siddhant Shrivastava", roll: "260585" },
+  { name: "Suhani Kumari Singh", roll: "260526" },
+  { name: "Rupam", roll: "260647" },
+  { name: "Anup Gupta", roll: "260731" },
+  { name: "Ajay Yadav", roll: "260729" },
+  { name: "Sameer Pandey", roll: "260739" },
+  { name: "Krishna Chaurasiya", roll: "260733" },
+  { name: "Anshu Yadav", roll: "260730" },
+  { name: "Kanhai Kumar", roll: "260732" },
+  { name: "Naman Singh Kushwaha", roll: "260736" },
+  { name: "Yash Patel", roll: "260929" },
+  { name: "Anjali", roll: "260930" },
+  { name: "Vedansh", roll: "260931" },
+  { name: "Gunjan", roll: "260460" },
+  { name: "Bhupesh Singh Shahi", roll: "260527" },
+  { name: "Sudhanshu", roll: "260454" },
+  { name: "Ayush Yadav", roll: "260932" },
+  { name: "Ripuhan", roll: "260584" },
+  { name: "Prabhanshu Shrivastava", roll: "260738" },
+  { name: "Mohit Goyal", roll: "260893" },
+  { name: "Sameer Dubey", roll: "260933" },
+  { name: "Ankur", roll: "260522" },
+  { name: "Nakul Chaudhary", roll: "260935" },
+  { name: "Mohit", roll: "260589" },
+  { name: "Amit Kumar", roll: "260936" },
+  { name: "Vicky Raj", roll: "260937" },
+  { name: "Manav Rana", roll: "260735" },
+  { name: "Harshvardhan Singh", roll: "260938" },
+  { name: "Sumit Kumar", roll: "260928" },
+  { name: "Shivam Rao", roll: "260940" },
+  { name: "Asfiya Siddiqui", roll: "260941" },
+  { name: "Tejansh Maurya", roll: "260871" },
+  { name: "Ayush Yadav", roll: "260863" },
+  { name: "Siddharth Sharma", roll: "260925" },
+  { name: "Nishant Sharma", roll: "260751" },
+  { name: "Sunny Kumar", roll: "260943" },
+  { name: "Mradul", roll: "260944" },
+  { name: "Parv Agarwal", roll: "260946" },
+  { name: "Neel Yuvan", roll: "260947" },
+  { name: "Radhika Sahay", roll: "260948" },
+  { name: "Shubham Mehta", roll: "260870" },
+  { name: "Aanya Varshney", roll: "260920" },
+  { name: "Jeetesh Chaudhary", roll: "260949" },
+  { name: "Jeevesh Chaudhary", roll: "260950" },
+  { name: "Sanskar Singh", roll: "260951" },
+  { name: "Siddharth Singh", roll: "260952" },
+  { name: "Tanisha Jain", roll: "260953" },
+  { name: "Yatharth Vishnoi", roll: "260955" },
+];
+
+// 2nd Year Students Cohort (MSOT currently has only 1st and 2nd year students)
+export const SECOND_YEAR_STUDENTS = [
+  { name: "Sarah Chen", roll: "250101" },
+  { name: "Ananya Rao", roll: "250102" },
+  { name: "Aditya Mehta", roll: "250103" },
+  { name: "Rohan Verma", roll: "250104" },
+  { name: "Tanvi Sharma", roll: "250105" },
+  { name: "Kabir Das", roll: "250106" },
+  { name: "Diya Patel", roll: "250107" },
+  { name: "Arjun Reddy", roll: "250108" },
+  { name: "Sneha Kapoor", roll: "250109" },
+  { name: "Vikram Malhotra", roll: "250110" },
+  { name: "Pooja Saxena", roll: "250111" },
+  { name: "Varun Chopra", roll: "250112" },
+  { name: "Kavya Iyer", roll: "250113" },
+  { name: "Karan Bose", roll: "250114" },
+  { name: "Rhea Nair", roll: "250115" },
+];
+
+// Generate comprehensive student population (1st Year batch + 2nd Year senior cohort)
+// Strictly NO 3rd or 4th year students
 export function generateStudents() {
-  const firstNames = [
-    "Aarav", "Vivaan", "Aditya", "Vihaan", "Arjun", "Reyansh", "Muhammad", "Sai", "Ayaan", "Krishna",
-    "Ishaan", "Shaurya", "Atharva", "Kabir", "Dhruv", "Rudra", "Anaya", "Diya", "Saanvi", "Aanya",
-    "Aadhya", "Pari", "Chiara", "Khushi", "Myra", "Riya", "Avani", "Ira", "Ahana", "Prisha",
-    "Tanvi", "Tara", "Rohan", "Dev", "Neil", "Samar", "Kunal", "Meera", "Zara", "Nisha",
-    "Varun", "Kavya", "Siddharth", "Simran", "Tanya", "Akash", "Pooja", "Vikram", "Sneha", "Rahul",
-    "Neha", "Amit", "Priya", "Manish", "Shreya", "Karan", "Rhea", "Harsh", "Bhavya", "Naveen"
-  ];
-  const lastNames = [
-    "Sharma", "Verma", "Gupta", "Malhotra", "Kapoor", "Chopra", "Singh", "Kumar", "Iyer", "Nair",
-    "Reddy", "Patel", "Mehta", "Bhatia", "Jain", "Saxena", "Chauhan", "Bose", "Das", "Rao"
-  ];
   const programs = [
     "B.Tech Computer Science",
     "B.Tech AI & Data Science",
     "B.Tech Software Engineering",
     "B.Tech Cyber Security",
-    "B.Tech Electronics & Computing"
+    "B.Tech Electronics & Computing",
   ];
 
   const students = [];
-  for (let i = 0; i < 60; i++) {
-    const fName = firstNames[i];
-    const lName = lastNames[i % lastNames.length];
-    const year = (i % 4) + 1;
-    const studentNum = 100 + i;
+  const emails = new Set();
+
+  // 1. Generate 1st Year Students (All 119 students from the official batch roster)
+  FIRST_YEAR_ROSTER.forEach((entry, idx) => {
+    const parts = entry.name.toLowerCase().split(" ");
+    let email = "";
+    if (parts.length === 1) {
+      email = `${parts[0]}${entry.roll}@msot.edu`;
+    } else {
+      email = `${parts[0]}.${parts[parts.length - 1]}@msot.edu`;
+      if (emails.has(email)) {
+        email = `${parts[0]}.${parts[parts.length - 1]}${entry.roll.slice(-3)}@msot.edu`;
+      }
+    }
+    emails.add(email);
+
+    const studentNum = 100 + idx;
     students.push({
-      id: `s0000000-0000-0000-0000-0000000000${studentNum}`,
-      full_name: `${fName} ${lName}`,
-      email: `${fName.toLowerCase()}.${lName.toLowerCase()}${i}@msot.edu`,
-      student_id: `MSOT202${6 - year}CS${studentNum}`,
+      id: `s0000000-0000-0000-0000-000000000${studentNum}`,
+      full_name: entry.name,
+      email: email,
+      student_id: entry.roll,
       campus_id: "c1111111-1111-1111-1111-111111111111", // Delhi
-      year_of_study: year,
-      program: programs[i % programs.length],
+      year_of_study: 1, // First Year Batch
+      program: programs[idx % programs.length],
       phone: `+91 98${Math.floor(10000000 + Math.random() * 90000000)}`,
       role: "student",
     });
-  }
+  });
+
+  // 2. Generate 2nd Year Senior Cohort (Year 2 only)
+  SECOND_YEAR_STUDENTS.forEach((entry, idx) => {
+    const parts = entry.name.toLowerCase().split(" ");
+    const email = `${parts[0]}.${parts[parts.length - 1]}@msot.edu`;
+    const studentNum = 100 + FIRST_YEAR_ROSTER.length + idx;
+
+    students.push({
+      id: `s0000000-0000-0000-0000-000000000${studentNum}`,
+      full_name: entry.name,
+      email: email,
+      student_id: `MSOT2025CS${entry.roll.slice(-3)}`,
+      campus_id: "c1111111-1111-1111-1111-111111111111",
+      year_of_study: 2, // Second Year Senior
+      program: programs[(idx + 2) % programs.length],
+      phone: `+91 98${Math.floor(10000000 + Math.random() * 90000000)}`,
+      role: "student",
+    });
+  });
+
   return students;
 }
 
@@ -652,16 +810,29 @@ async function main() {
   const memberships = generateMemberships(students, SEED_DATA.clubs);
   const phase3 = generatePhase3Data(students, memberships);
 
+  const jsonPath = path.resolve("src/lib/seed-data.json");
+  let existingPhase4 = {};
+  if (fs.existsSync(jsonPath)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+      if (prev.events) existingPhase4.events = prev.events;
+      if (prev.eventTeams) existingPhase4.eventTeams = prev.eventTeams;
+      if (prev.eventRegistrations) existingPhase4.eventRegistrations = prev.eventRegistrations;
+      if (prev.certificates) existingPhase4.certificates = prev.certificates;
+      if (prev.dutyLeaves) existingPhase4.dutyLeaves = prev.dutyLeaves;
+    } catch {}
+  }
+
   const fullData = {
     ...SEED_DATA,
     students,
     memberships,
     ...phase3,
+    ...existingPhase4,
     exportedAt: new Date().toISOString(),
   };
 
   // Write local seed-data.json snapshot for client & mock development
-  const jsonPath = path.resolve("src/lib/seed-data.json");
   const jsonDir = path.dirname(jsonPath);
   if (!fs.existsSync(jsonDir)) {
     fs.mkdirSync(jsonDir, { recursive: true });

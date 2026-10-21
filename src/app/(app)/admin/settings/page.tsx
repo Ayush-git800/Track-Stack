@@ -122,13 +122,13 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="text-xs font-semibold text-white block mb-1">
-                  Final Year (Year 4) Limit Override
+                  2nd Year Limit Override
                 </label>
                 <Input
                   type="number"
                   min={1}
                   max={4}
-                  value={settings.membership_rules.year_overrides["4"] ?? 1}
+                  value={settings.membership_rules.year_overrides["2"] ?? 2}
                   onChange={(e) =>
                     setSettings({
                       ...settings,
@@ -136,14 +136,14 @@ export default function AdminSettingsPage() {
                         ...settings.membership_rules,
                         year_overrides: {
                           ...settings.membership_rules.year_overrides,
-                          "4": Number(e.target.value),
+                          "2": Number(e.target.value),
                         },
                       },
                     })
                   }
                 />
                 <p className="text-[11px] text-muted-foreground mt-1">
-                  Senior students focus on capstone and placement prep (default 1 club).
+                  Active club membership quota for 2nd year students (MSOT currently has 1st and 2nd year cohorts).
                 </p>
               </div>
             </div>

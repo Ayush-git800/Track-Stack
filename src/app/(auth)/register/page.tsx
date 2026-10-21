@@ -201,8 +201,6 @@ export default function RegisterPage() {
                   >
                     <option value={1}>1st Year (Max 2 clubs)</option>
                     <option value={2}>2nd Year (Max 2 clubs)</option>
-                    <option value={3}>3rd Year (Max 2 clubs)</option>
-                    <option value={4}>4th Year (Configured limit)</option>
                   </select>
                 </div>
               </div>

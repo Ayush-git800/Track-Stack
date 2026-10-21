@@ -346,13 +346,17 @@ export default function LoginPage() {
             <div className="mt-4">
               <p className="text-xs text-slate-600 dark:text-slate-300 mb-3 font-medium">Choose an institutional account:</p>
               
-              <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+              <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
                 {[
                   { name: "Ayush Chauhan", email: "admin@msot.edu", role: "System Admin", badge: "Admin", color: "text-cyan-400 border-cyan-500/30" },
                   { name: "Sundaram Mishra", email: "manager.delhi@msot.edu", role: "Campus Manager", badge: "Manager", color: "text-blue-400 border-blue-500/30" },
                   { name: "Gaurav Kumar", email: "advisor.kaizen@msot.edu", role: "Faculty Advisor", badge: "Faculty", color: "text-purple-400 border-purple-500/30" },
-                  { name: "Rishav Raj", email: "coordinator.kaizen@msot.edu", role: "Student Coordinator", badge: "Coordinator", color: "text-emerald-400 border-emerald-500/30" },
-                  { name: "Chintu", email: "student.alex@msot.edu", role: "Student (B.Tech CSE)", badge: "Student", color: "text-amber-400 border-amber-500/30" },
+                  { name: "Rishav Raj", email: "coordinator.kaizen@msot.edu", role: "Student Coordinator (Year 2)", badge: "Coordinator", color: "text-emerald-400 border-emerald-500/30" },
+                  { name: "Ayush Chauhan (Team Leader)", email: "ayush.chauhan@msot.edu", role: "1st Year CSE (Roll 260429)", badge: "1st Year", color: "text-amber-400 border-amber-500/30" },
+                  { name: "Rishav Ranjan", email: "rishav.ranjan@msot.edu", role: "1st Year CSE (Roll 260441)", badge: "1st Year", color: "text-amber-400 border-amber-500/30" },
+                  { name: "Saksham Chauhan", email: "saksham.chauhan@msot.edu", role: "1st Year CSE (Roll 260443)", badge: "1st Year", color: "text-amber-400 border-amber-500/30" },
+                  { name: "Shreyashi Agrawal", email: "shreyashi.agrawal@msot.edu", role: "1st Year CSE (Roll 260532)", badge: "1st Year", color: "text-amber-400 border-amber-500/30" },
+                  { name: "Chintu", email: "student.alex@msot.edu", role: "2nd Year Student", badge: "2nd Year", color: "text-blue-400 border-blue-500/30" },
                 ].map((acc) => (
                   <button
                     key={acc.email}

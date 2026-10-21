@@ -71,11 +71,11 @@ export const LUMI_FAQS: LumiFaqItem[] = [
   },
   {
     id: "faq-mem-7",
-    question: "Can senior year students have a different club limit?",
-    answer: "Yes, Admin > System Settings supports per-year-of-study overrides (for instance, 1 club max for 4th year capstone students). Check with your campus manager or admin for current limits.",
+    question: "Can students have different club limits by year of study?",
+    answer: "Yes, Admin > System Settings supports per-year-of-study overrides for 1st Year and 2nd Year students (default is 2 clubs per student). Mirai School of Technology currently only has 1st and 2nd year cohorts—there are no 3rd or 4th year students.",
     category: "membership",
     roles: ["student", "admin", "campus_manager"],
-    keywords: ["year override", "senior year", "4th year", "rule"],
+    keywords: ["year override", "year of study", "2nd year", "1st year", "rule", "limit"],
   },
   {
     id: "faq-mem-8",
@@ -469,6 +469,14 @@ export const LUMI_FAQS: LumiFaqItem[] = [
     category: "general",
     roles: ["student", "student_coordinator", "faculty_advisor", "campus_manager", "admin"],
     keywords: ["good morning", "good evening", "good afternoon", "shubh prabhat", "namaste", "namaskar"],
+  },
+  {
+    id: "faq-gen-10",
+    question: "What student batches and years exist at Mirai School of Technology (MSOT)?",
+    answer: "Mirai School of Technology currently has only two student cohorts: **First Year (Batch 2026 / Class of 2028)** and **Second Year (Batch 2025 / Class of 2027)**. There are currently no 3rd or 4th year students. The official first-year batch consists of 119 students with roll numbers in the 260xxx series (including Ayush Chauhan roll 260429, Rishav Ranjan roll 260441, etc.).",
+    category: "general",
+    roles: ["student", "student_coordinator", "faculty_advisor", "campus_manager", "admin"],
+    keywords: ["batch", "first year", "second year", "3rd year", "4th year", "students", "cohort", "roll number", "how many students", "years"],
   },
 ];
 
