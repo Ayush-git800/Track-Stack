@@ -1737,9 +1737,26 @@ class Store {
   // ============================================================================
 
   public getStudentTranscriptData(userIdOrStudentId: string): CoCurricularTranscript | null {
-    const student = this.state.students.find(
-      (s) => s.id === userIdOrStudentId || s.student_id?.toLowerCase() === userIdOrStudentId.toLowerCase()
+    let student = this.state.students.find(
+      (s) =>
+        s.id === userIdOrStudentId ||
+        s.student_id?.toLowerCase() === userIdOrStudentId.toLowerCase() ||
+        s.email?.toLowerCase() === userIdOrStudentId.toLowerCase()
     );
+
+    if (!student && (userIdOrStudentId === "u0000000-0000-0000-0000-000000000005" || userIdOrStudentId === "MSOT2025SE019")) {
+      student = {
+        id: "u0000000-0000-0000-0000-000000000005",
+        full_name: "Chintu",
+        email: "student.alex@msot.edu",
+        student_id: "MSOT2025SE019",
+        campus_id: "c1111111-1111-1111-1111-111111111111",
+        year_of_study: 2,
+        program: "B.Tech Software Engineering",
+        role: "student",
+      };
+    }
+
     if (!student) return null;
 
     // 1. Enrolled clubs & attendance percentage
@@ -1812,8 +1829,8 @@ class Store {
       student_name: student.full_name,
       student_uid: student.id,
       email: student.email,
-      program: student.program || "B.Tech Computer Science & AI",
-      year_of_study: student.year_of_study || 2,
+      program: student.program || "B.Tech Computer Science",
+      year_of_study: student.year_of_study || 1,
       campus_name: student.campus_name || "Delhi-NCR Campus",
       generated_at: new Date().toISOString(),
       clubs: clubsData,

@@ -8,6 +8,7 @@ import { CoCurricularTranscript } from "@/lib/types";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import {
   FileText,
@@ -23,13 +24,16 @@ import {
   Percent,
   QrCode,
   Code,
+  Search,
 } from "lucide-react";
 import QRCode from "qrcode";
 
 export default function TranscriptPage() {
   const { user, role } = useAuth();
   const [storeState, setStoreState] = React.useState(appStore.getState());
-  const [selectedStudentId, setSelectedStudentId] = React.useState<string>(user?.id || "");
+  const [selectedStudentId, setSelectedStudentId] = React.useState<string>("");
+  const [studentSearch, setStudentSearch] = React.useState<string>("");
+  const [selectedCohortFilter, setSelectedCohortFilter] = React.useState<string>("All");
   const [qrCodeDataUrl, setQrCodeDataUrl] = React.useState<string>("");
 
   React.useEffect(() => {
@@ -38,16 +42,58 @@ export default function TranscriptPage() {
     });
   }, []);
 
-  React.useEffect(() => {
-    if (user && !selectedStudentId) {
-      setSelectedStudentId(user.id);
-    }
-  }, [user, selectedStudentId]);
-
   const students = storeState.students;
-  const currentStudent = students.find((s) => s.id === selectedStudentId) || (user?.role === "student" ? user : students[0]);
 
-  const transcriptData = currentStudent ? appStore.getStudentTranscriptData(currentStudent.id) : null;
+  // Sync selected student from URL or current logged-in user
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlStudentId = params.get("studentId");
+      if (urlStudentId) {
+        const found = students.find(
+          (s) =>
+            s.id === urlStudentId ||
+            s.student_id?.toLowerCase() === urlStudentId.toLowerCase()
+        );
+        if (found) {
+          setSelectedStudentId(found.id);
+          return;
+        }
+      }
+    }
+
+    if (!selectedStudentId && user) {
+      const matchSelf = students.find((s) => s.id === user.id || s.email === user.email);
+      if (matchSelf) {
+        setSelectedStudentId(matchSelf.id);
+      } else {
+        setSelectedStudentId(user.id);
+      }
+    }
+  }, [user, students, selectedStudentId]);
+
+  const currentStudent =
+    students.find((s) => s.id === selectedStudentId) ||
+    (user?.role === "student" ? user : students[0]);
+
+  const transcriptData = currentStudent
+    ? appStore.getStudentTranscriptData(currentStudent.student_id || currentStudent.id)
+    : null;
+
+  // Filter students for staff inspector
+  const filteredStudents = students.filter((s) => {
+    const matchesSearch =
+      !studentSearch.trim() ||
+      s.full_name.toLowerCase().includes(studentSearch.toLowerCase()) ||
+      (s.student_id && s.student_id.toLowerCase().includes(studentSearch.toLowerCase())) ||
+      s.email.toLowerCase().includes(studentSearch.toLowerCase());
+
+    const matchesCohort =
+      selectedCohortFilter === "All" ||
+      s.year_of_study === Number(selectedCohortFilter);
+
+    return matchesSearch && matchesCohort;
+  });
 
   // Generate QR code for verification link
   React.useEffect(() => {
@@ -67,7 +113,11 @@ export default function TranscriptPage() {
     );
   }
 
-  const isStaff = role === "admin" || role === "campus_manager" || role === "faculty_advisor";
+  const isStaff =
+    role === "admin" ||
+    role === "campus_manager" ||
+    role === "faculty_advisor" ||
+    role === "student_coordinator";
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
@@ -91,7 +141,7 @@ export default function TranscriptPage() {
         <div className="flex flex-wrap items-center gap-2">
           {/* JSON API Endpoint Button for Placement Readiness */}
           <a
-            href={`/api/transcript/${currentStudent.id}`}
+            href={`/api/transcript/${currentStudent.student_id || currentStudent.id}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-950 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:border-cyan-500 hover:text-cyan-600 transition-colors shadow-sm"
@@ -101,7 +151,7 @@ export default function TranscriptPage() {
 
           {/* Download Official Signed PDF Transcript */}
           <a
-            href={`/api/transcript/${currentStudent.id}/pdf`}
+            href={`/api/transcript/${currentStudent.student_id || currentStudent.id}/pdf`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold hover:opacity-90 transition-opacity shadow-glow"
@@ -113,22 +163,87 @@ export default function TranscriptPage() {
 
       {/* Staff Student Selector */}
       {isStaff && (
-        <Card className="p-4 bg-slate-50/50 dark:bg-navy-900/40">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div className="text-xs">
-              <span className="font-bold text-foreground">Staff Transcript Inspector:</span> Select any registered student to view and download their verified transcript.
+        <Card className="p-4 bg-slate-50/50 dark:bg-navy-900/60 border-navy-800">
+          <div className="space-y-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div>
+                <span className="font-bold text-foreground text-xs">Staff Transcript Inspector:</span>
+                <span className="text-xs text-muted-foreground ml-1">
+                  Inspect and download verified transcript for any of the 119 first-year students or 2nd-year cohort.
+                </span>
+              </div>
+              <div className="text-[11px] font-mono text-cyan-400">
+                {filteredStudents.length} students found
+              </div>
             </div>
-            <select
-              value={currentStudent.id}
-              onChange={(e) => setSelectedStudentId(e.target.value)}
-              className="text-xs rounded-lg border border-slate-200 dark:border-navy-800 bg-white dark:bg-navy-950 p-2 font-medium"
-            >
-              {students.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.full_name} ({s.student_id}) - {s.campus_name}
-                </option>
-              ))}
-            </select>
+
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
+              <div className="sm:col-span-5 relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                <Input
+                  placeholder="Filter by name or roll number (e.g. 260429)..."
+                  value={studentSearch}
+                  onChange={(e) => setStudentSearch(e.target.value)}
+                  className="pl-8 h-9 text-xs"
+                />
+              </div>
+
+              <div className="sm:col-span-3">
+                <select
+                  value={selectedCohortFilter}
+                  onChange={(e) => setSelectedCohortFilter(e.target.value)}
+                  className="w-full h-9 rounded-xl border border-navy-800 bg-white dark:bg-navy-950 px-2 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >
+                  <option value="All">All Cohorts ({students.length})</option>
+                  <option value="1">1st Year Batch (119)</option>
+                  <option value="2">2nd Year Cohort (15)</option>
+                </select>
+              </div>
+
+              <div className="sm:col-span-4">
+                <select
+                  value={currentStudent.id}
+                  onChange={(e) => setSelectedStudentId(e.target.value)}
+                  className="w-full h-9 rounded-xl border border-navy-800 bg-white dark:bg-navy-950 px-2 text-xs font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-cyan-400 truncate"
+                >
+                  {filteredStudents.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.full_name} ({s.student_id}) - Year {s.year_of_study || 1}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Quick jump pills */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+              <span className="text-muted-foreground text-[10px]">Quick Jump:</span>
+              {[
+                { name: "Ayush Chauhan", roll: "260429" },
+                { name: "Rishav Ranjan", roll: "260441" },
+                { name: "Saksham Chauhan", roll: "260443" },
+                { name: "Shreyashi Agrawal", roll: "260532" },
+                { name: "Chintu (Year 2)", roll: "MSOT2025SE019" },
+              ].map((pill) => {
+                const target = students.find((s) => s.student_id === pill.roll || s.full_name.includes(pill.name.split(" ")[0]));
+                if (!target) return null;
+                const isSelected = target.id === currentStudent.id;
+                return (
+                  <button
+                    key={pill.roll}
+                    type="button"
+                    onClick={() => setSelectedStudentId(target.id)}
+                    className={`px-2 py-0.5 rounded-full border text-[10px] font-mono transition-colors ${
+                      isSelected
+                        ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/50"
+                        : "bg-navy-950/60 text-muted-foreground border-navy-800 hover:text-white hover:border-cyan-500/30"
+                    }`}
+                  >
+                    {pill.name} ({pill.roll})
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </Card>
       )}
@@ -136,19 +251,27 @@ export default function TranscriptPage() {
       {/* Student Profile & KPI Summary */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-5 md:col-span-2 flex items-center justify-between">
-          <div className="space-y-1">
-            <Badge variant="outline" className="font-mono text-[10px]">
-              {transcriptData.student_id}
-            </Badge>
-            <h2 className="text-xl font-bold font-heading text-foreground">
+          <div className="space-y-1.5">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <Badge variant="outline" className="font-mono text-xs text-cyan-400 font-bold border-cyan-500/30">
+                Roll: {transcriptData.student_id}
+              </Badge>
+              <Badge variant={currentStudent.year_of_study === 1 ? "gradient" : "outline"} className="text-[10px] font-mono">
+                Year {currentStudent.year_of_study || transcriptData.year_of_study || 1} {currentStudent.year_of_study === 1 ? "(1st Year Batch)" : "(2nd Year Cohort)"}
+              </Badge>
+            </div>
+
+            <h2 className="text-xl sm:text-2xl font-bold font-heading text-foreground">
               {transcriptData.student_name}
             </h2>
-            <div className="text-xs text-muted-foreground">
-              {transcriptData.campus_name} • {transcriptData.email}
+
+            <div className="text-xs text-muted-foreground font-mono">
+              {transcriptData.program} &bull; {transcriptData.email}
             </div>
-            <div className="text-[11px] text-muted-foreground pt-1 flex items-center gap-1">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
-              Cryptographically verified by MSOT Registrar
+
+            <div className="text-[11px] text-muted-foreground pt-1 flex items-center gap-1.5">
+              <ShieldCheck className="h-4 w-4 text-emerald-500" />
+              <span>Cryptographically verified by MSOT Registrar &bull; {transcriptData.campus_name}</span>
             </div>
           </div>
 
